@@ -16,14 +16,23 @@ namespace Blazored.Toast
         [Inject] private NavigationManager NavigationManager { get; set; }
 
         [Parameter] public IconType? IconType { get; set; }
-        [Parameter] public string InfoClass { get; set; }
-        [Parameter] public string InfoIcon { get; set; }
+        [Parameter] public string PrimaryClass { get; set; }
+        [Parameter] public string PrimaryIcon { get; set; }
+        [Parameter] public string SecondaryClass { get; set; }
+        [Parameter] public string SecondaryIcon { get; set; }
         [Parameter] public string SuccessClass { get; set; }
         [Parameter] public string SuccessIcon { get; set; }
+        [Parameter] public string DangerClass { get; set; }
+        [Parameter] public string DangerIcon { get; set; }
         [Parameter] public string WarningClass { get; set; }
         [Parameter] public string WarningIcon { get; set; }
-        [Parameter] public string ErrorClass { get; set; }
-        [Parameter] public string ErrorIcon { get; set; }
+        [Parameter] public string InfoClass { get; set; }
+        [Parameter] public string InfoIcon { get; set; }
+        [Parameter] public string LightClass { get; set; }
+        [Parameter] public string LightIcon { get; set; }
+        [Parameter] public string DarkClass { get; set; }
+        [Parameter] public string DarkIcon { get; set; }
+
         [Parameter] public ToastPosition Position { get; set; } = ToastPosition.TopRight;
         [Parameter] public int Timeout { get; set; } = 5;
         [Parameter] public int MaxToastCount { get; set; } = int.MaxValue;
@@ -33,7 +42,7 @@ namespace Blazored.Toast
         [Parameter] public bool ShowCloseButton { get; set; } = true;
 
         private string PositionClass { get; set; } = string.Empty;
-      
+
         internal List<ToastInstance> ToastList { get; set; } = new List<ToastInstance>();
         internal Queue<ToastInstance> ToastWaitingQueue { get; set; } = new Queue<ToastInstance>();
 
@@ -53,10 +62,14 @@ namespace Blazored.Toast
 
             PositionClass = $"position-{Position.ToString().ToLower()}";
 
-            if ((!string.IsNullOrEmpty(InfoIcon)
+            if ((!string.IsNullOrEmpty(PrimaryIcon)
+                 || !string.IsNullOrEmpty(SecondaryIcon)
                  || !string.IsNullOrEmpty(SuccessIcon)
+                 || !string.IsNullOrEmpty(DangerIcon)
                  || !string.IsNullOrEmpty(WarningIcon)
-                 || !string.IsNullOrEmpty(ErrorIcon)
+                 || !string.IsNullOrEmpty(InfoIcon)
+                 || !string.IsNullOrEmpty(LightIcon)
+                 || !string.IsNullOrEmpty(DarkIcon)
                 ) && IconType == null)
             {
                 throw new ArgumentException("If an icon is specified then IconType is a required parameter.");
@@ -94,35 +107,51 @@ namespace Blazored.Toast
             });
         }
 
-        private ToastSettings BuildToastSettings(ToastLevel level, RenderFragment message, string heading, Action? onclick)
+        private ToastSettings BuildToastSettings(ToastColor color, RenderFragment message, string heading, Action? onclick)
         {
-            switch (level)
+            switch (color)
             {
-                case ToastLevel.Error:
-                    return new ToastSettings(ToastLevel.Error, string.IsNullOrWhiteSpace(heading) ? "Error" : heading, message, IconType,
-                        "blazored-toast-error", ErrorClass, ErrorIcon, ShowProgressBar, MaxToastCount, onclick);
+                case ToastColor.Primary:
+                    return new ToastSettings(ToastColor.Primary, string.IsNullOrWhiteSpace(heading) ? "Primary" : heading, message, IconType,
+                        "blazored-toast-primary", PrimaryClass, PrimaryIcon, ShowProgressBar, MaxToastCount, onclick);
 
-                case ToastLevel.Info:
-                    return new ToastSettings(ToastLevel.Info, string.IsNullOrWhiteSpace(heading) ? "Info" : heading, message, IconType,
-                        "blazored-toast-info", InfoClass, InfoIcon, ShowProgressBar, MaxToastCount, onclick);
+                case ToastColor.Secondary:
+                    return new ToastSettings(ToastColor.Secondary, string.IsNullOrWhiteSpace(heading) ? "Secondary" : heading, message, IconType,
+                        "blazored-toast-secondary", SecondaryClass, SecondaryIcon, ShowProgressBar, MaxToastCount, onclick);
 
-                case ToastLevel.Success:
-                    return new ToastSettings(ToastLevel.Success, string.IsNullOrWhiteSpace(heading) ? "Success" : heading, message, IconType,
+                case ToastColor.Success:
+                    return new ToastSettings(ToastColor.Success, string.IsNullOrWhiteSpace(heading) ? "Success" : heading, message, IconType,
                         "blazored-toast-success", SuccessClass, SuccessIcon, ShowProgressBar, MaxToastCount, onclick);
 
-                case ToastLevel.Warning:
-                    return new ToastSettings(ToastLevel.Warning, string.IsNullOrWhiteSpace(heading) ? "Warning" : heading, message, IconType,
+                case ToastColor.Danger:
+                    return new ToastSettings(ToastColor.Danger, string.IsNullOrWhiteSpace(heading) ? "Danger" : heading, message, IconType,
+                        "blazored-toast-danger", DangerClass, DangerIcon, ShowProgressBar, MaxToastCount, onclick);
+
+                case ToastColor.Warning:
+                    return new ToastSettings(ToastColor.Warning, string.IsNullOrWhiteSpace(heading) ? "Warning" : heading, message, IconType,
                         "blazored-toast-warning", WarningClass, WarningIcon, ShowProgressBar, MaxToastCount, onclick);
+
+                case ToastColor.Info:
+                    return new ToastSettings(ToastColor.Info, string.IsNullOrWhiteSpace(heading) ? "Info" : heading, message, IconType,
+                        "blazored-toast-info", InfoClass, InfoIcon, ShowProgressBar, MaxToastCount, onclick);
+
+                case ToastColor.Light:
+                    return new ToastSettings(ToastColor.Light, string.IsNullOrWhiteSpace(heading) ? "Light" : heading, message, IconType,
+                        "blazored-toast-light", LightClass, LightIcon, ShowProgressBar, MaxToastCount, onclick);
+
+                case ToastColor.Dark:
+                    return new ToastSettings(ToastColor.Dark, string.IsNullOrWhiteSpace(heading) ? "Dark" : heading, message, IconType,
+                        "blazored-toast-dark", DarkClass, DarkIcon, ShowProgressBar, MaxToastCount, onclick);
             }
 
             throw new InvalidOperationException();
         }
 
-        private void ShowToast(ToastLevel level, RenderFragment message, string heading, Action? onClick)
+        private void ShowToast(ToastColor color, RenderFragment message, string heading, Action? onClick)
         {
             InvokeAsync(() =>
             {
-                var settings = BuildToastSettings(level, message, heading, onClick);
+                var settings = BuildToastSettings(color, message, heading, onClick);
                 var toast = new ToastInstance(settings);
 
                 if (ToastList.Count < MaxToastCount)
@@ -196,11 +225,11 @@ namespace Blazored.Toast
             });
         }
 
-        private void ClearToasts(ToastLevel toastLevel)
+        private void ClearToasts(ToastColor ToastColor)
         {
             InvokeAsync(() =>
             {
-                ToastList.RemoveAll(x => x.BlazoredToast == null && x.ToastSettings.ToastLevel == toastLevel);
+                ToastList.RemoveAll(x => x.BlazoredToast == null && x.ToastSettings.ToastColor == ToastColor);
                 StateHasChanged();
             });
         }

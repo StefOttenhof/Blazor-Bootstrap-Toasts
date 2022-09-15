@@ -13,4 +13,12 @@
     <ProjectReference Include="..\..\src\Blazored.Toast\Blazored.Toast.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Blazored.Toast" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Blazored.Toast">
+      <HintPath>..\..\src\Blazored.Toast\bin\Debug\netstandard2.1\Blazored.Toast.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

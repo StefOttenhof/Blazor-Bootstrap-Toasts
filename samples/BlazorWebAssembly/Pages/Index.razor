@@ -4,28 +4,48 @@
 
 <h1>Blazored Toasts</h1>
 
-<button class="btn btn-info" id="InfoButton" @onclick="@(() => toastService.ShowInfo("I'm an INFO message"))">Info Toast</button>
-<button class="btn btn-success" id="SuccessButton" @onclick="@(() => toastService.ShowSuccess("I'm a SUCCESS message with a custom heading", "Congratulations!"))">Success Toast</button>
-<button class="btn btn-warning" @onclick="@(() => toastService.ShowWarning("I'm a WARNING message"))">Warning Toast</button>
-<button class="btn btn-danger" @onclick="@(() => toastService.ShowError("I'm an ERROR message"))">Error Toast</button>
-<button class="btn btn-info" @onclick="@OnShowHtml">Info Toast with HTML</button>
-<button class="btn btn-info" @onclick="@(() => toastService.ShowInfo("Click to refresh the page", "Click me!", () => { NavigationManager.NavigateTo("/", true); }))">
-    Info Toast with custom action on click
-</button>
+<div class="row mb-2">
+    <button class="col-2 mr-1 btn btn-primary" @onclick="@(() => toastService.ShowPrimary("I'm an PRIMARY message"))">Primary</button>
+    <button class="col-2 ml-1 mr-1 btn btn-secondary" @onclick="@(() => toastService.ShowSecondary("I'm an SECONDARY message"))">Secondary</button>
+    <button class="col-2 ml-1 mr-1 btn btn-light" @onclick="@(() => toastService.ShowLight("I'm an LIGHT message"))">Light</button>
+    <button class="col-2 ml-1 btn btn-dark" @onclick="@(() => toastService.ShowDark("I'm an DARK message"))">Dark</button>
+</div>
+
+<div class="row">
+    <button class="col-2 mr-1 btn btn-success" @onclick="@(() => toastService.ShowSuccess("I'm an SUCCESS message"))">Success</button>
+    <button class="col-2 ml-1 mr-1 btn btn-danger" @onclick="@(() => toastService.ShowDanger("I'm an DANGER message"))">Danger</button>
+    <button class="col-2 ml-1 mr-1 btn btn-warning" @onclick="@(() => toastService.ShowWarning("I'm an WARNING message"))">Warning</button>
+    <button class="col-2 ml-1 btn btn-info" @onclick="@(() => toastService.ShowInfo("I'm an INFO message"))">Info</button>
+</div>
 <hr />
 
-<h1>Blazored Toasts - Custom Component</h1>
+<h1>Custom Header & OnClick</h1>
 
-<button class="btn btn-primary" @onclick="@(() => toastService.ShowToast<MyToastComponent>(new ToastInstanceSettings(5, true)))">Custom Toast</button>
-<button class="btn btn-secondary" id="CustomButton" @onclick="@(() => toastService.ShowToast<MyToastComponent>(_toastParameters, new ToastInstanceSettings(5, true)))">Custom Toast with parameters</button>
+<div class="row">
+    <button class="col-2 mr-1 btn btn-info" @onclick="@(() => toastService.ShowInfo("I'm an INFO message", "I'm an custom header"))">Custom Header</button>
+    <button class="col-2 ml-1 btn btn-info" @onclick="@(() => toastService.ShowInfo("I'm an INFO message", null,  () => { NavigationManager.NavigateTo("/counter", true); }))">OnClick</button>
+</div>
 <hr />
 
-<h1>Blazored Toasts - Remove Toasts</h1>
+<h1>Clear Toasts</h1>
 
-<button class="btn btn-primary" @onclick="ClearAll">Clear All Toasts</button>
-<button class="btn btn-warning" @onclick="ClearWarnings">Clear Warning Toasts</button>
-<button class="btn btn-info" @onclick="ClearInfos">Clear Info Toasts</button>
-<button class="btn btn-secondary" @onclick="ClearCustom">Clear Custom Toasts</button>
+<div class="row mb-5">
+    <button class="col-2 btn btn-primary" @onclick="ClearAll">Clear All Toasts</button>
+</div>
+
+<div class="row mb-2">
+    <button class="col-2 mr-1 btn btn-primary" @onclick="ClearPrimary">Primary</button>
+    <button class="col-2 ml-1 mr-1 btn btn-secondary" @onclick="ClearSecondary">Secondary</button>
+    <button class="col-2 ml-1 mr-1 btn btn-light" @onclick="ClearLight">Light</button>
+    <button class="col-2 ml-1 btn btn-dark" @onclick="ClearDark">Dark</button>
+</div>
+
+<div class="row">
+    <button class="col-2 mr-1 btn btn-success" @onclick="ClearSuccess">Success</button>
+    <button class="col-2 ml-1 mr-1 btn btn-danger" @onclick="ClearDanger">Danger</button>
+    <button class="col-2 ml-1 mr-1 btn btn-warning" @onclick="ClearWarning">Warning</button>
+    <button class="col-2 ml-1 btn btn-info" @onclick="ClearInfo">Info</button>
+</div>
 
 @code
 {
@@ -41,19 +61,34 @@
     private void OnShowHtml()
     {
         RenderFragment message =@<text>I'm an <em>INFO</em> message with some <strong>bold</strong> text</text>
-    ;
-        toastService.ShowToast(ToastLevel.Info, message);
+        ;
+        toastService.ShowToast(ToastColor.Info, message);
     }
 
     private void ClearAll()
         => toastService.ClearAll();
 
-    private void ClearWarnings()
-        => toastService.ClearToasts(ToastLevel.Warning);
+    private void ClearPrimary()
+        => toastService.ClearPrimaryToasts();
 
-    private void ClearInfos()
+    private void ClearSecondary()
+        => toastService.ClearSecondaryToasts();
+
+    private void ClearDark()
+        => toastService.ClearDarkToasts();
+
+    private void ClearLight()
+        => toastService.ClearLightToasts();
+
+    private void ClearSuccess()
+        => toastService.ClearSuccessToasts();
+
+    private void ClearDanger()
+        => toastService.ClearDangerToasts();
+
+    private void ClearWarning()
+        => toastService.ClearToasts(ToastColor.Warning);
+
+    private void ClearInfo()
         => toastService.ClearInfoToasts();
-
-    private void ClearCustom()
-        => toastService.ClearCustomToasts();
 }

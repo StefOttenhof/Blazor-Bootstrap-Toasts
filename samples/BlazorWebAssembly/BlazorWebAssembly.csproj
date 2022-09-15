@@ -10,10 +10,16 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Build" Version="3.2.1" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="3.2.1" PrivateAssets="all" />
     <PackageReference Include="System.Net.Http.Json" Version="3.2.0" />
+    <PackageReference Include="bootstrap" Version="4.6.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Blazored.Toast\Blazored.Toast.csproj" />
+    <ProjectReference Include="..\..\src\Blazored.Toast\Blazored.Toast.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="bootstrap" />
+  </ItemGroup>
 </Project>

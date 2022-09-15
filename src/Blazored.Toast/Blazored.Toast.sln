@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1703.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazored.Toast", "Blazored.Toast.csproj", "{F83DEA49-AC53-4CBE-9B0B-16AC2E46062C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F83DEA49-AC53-4CBE-9B0B-16AC2E46062C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F83DEA49-AC53-4CBE-9B0B-16AC2E46062C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F83DEA49-AC53-4CBE-9B0B-16AC2E46062C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F83DEA49-AC53-4CBE-9B0B-16AC2E46062C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {939F0762-E3C3-4606-9771-5DDF6570D616}
+	EndGlobalSection
+EndGlobal

@@ -7,7 +7,7 @@ namespace Blazored.Toast.Configuration
     public class ToastSettings
     {
         public ToastSettings(
-            ToastLevel toastLevel,
+            ToastColor toastColor,
             string heading,
             RenderFragment message,
             IconType? iconType,
@@ -18,7 +18,7 @@ namespace Blazored.Toast.Configuration
             int maxItemsShown,
             Action? onClick)
         {
-            ToastLevel = toastLevel;
+            ToastColor = toastColor;
             Heading = heading;
             Message = message;
             IconType = iconType;
@@ -34,7 +34,7 @@ namespace Blazored.Toast.Configuration
             }
         }
 
-        public ToastLevel ToastLevel { get; set; }
+        public ToastColor ToastColor { get; set; }
         public string Heading { get; set; }
         public RenderFragment Message { get; set; }
         public string BaseClass { get; set; }

@@ -17,22 +17,40 @@
 }
 else
 {
-
-    <div class="blazored-toast blazored-toast-container @ToastSettings.BaseClass @ToastSettings.AdditionalClasses" @onclick="ToastClick">
-
-        @if (!string.IsNullOrWhiteSpace(ToastSettings.Icon))
-        {
-            <div class="blazored-toast-icon">
+    <div class="blazored-toast" role="alert" aria-live="assertive" aria-atomic="true" @onclick="ToastClick">
+        <div class="blazored-toast-header @ToastSettings.BaseClass @ToastSettings.AdditionalClasses">
+            @if (!string.IsNullOrWhiteSpace(ToastSettings.Icon))
+            {
                 @if (@ToastSettings.IconType == IconType.FontAwesome)
                 {
-                    <i class="@ToastSettings.Icon" aria-hidden="true"></i>
+                    <i class="@ToastSettings.Icon mr-2" aria-hidden="true"></i>
                 }
                 @if (@ToastSettings.IconType == IconType.Material)
                 {
-                    <i class="material-icons" aria-hidden="true">@ToastSettings.Icon</i>
+                    <i class="material-icons mr-2" aria-hidden="true">@ToastSettings.Icon</i>
                 }
+            }
+            <strong class="mr-auto">@ToastSettings.Heading</strong>
+            @*<small class="text-muted">just now</small>*@
+            @if (ShowCloseButton)
+            {
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close" @onclick="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            }
+        </div>
+        <div class="blazored-toast-body">
+            @ToastSettings.Message
+        </div>
+        @if (ToastSettings.ShowProgressBar)
+        {
+            <div class="progress" style="height: 3px;">
+                <div class="progress-bar @ToastSettings.BaseClass" role="progressbar" style="width: @(_progress)%;" aria-valuenow="@(_progress)" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         }
+    </div>
+
+    @*<div class="blazored-toast blazored-toast-container @ToastSettings.BaseClass @ToastSettings.AdditionalClasses" @onclick="ToastClick">
 
         <div class="blazored-toast-body">
             <div class="blazored-toast-header">
@@ -65,5 +83,5 @@ else
                 <span style="width: @(_progress)%;"></span>
             </div>
         }
-    </div>
+    </div>*@
 }
