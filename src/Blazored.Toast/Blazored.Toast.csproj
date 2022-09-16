@@ -4,30 +4,36 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
 
-    <Authors>Chris Sainty</Authors>
+    <Authors>Chris Sainty, Stef Ottenhof</Authors>
     <Company></Company>
-    <Copyright>Copyright 2020 (c) Chris Sainty. All rights reserved.</Copyright>
+    <Copyright>Copyright 2020 (c) Chris Sainty, Stef Ottenhof. All rights reserved.</Copyright>
     
     <Description>A JavaScript free Toast library for Blazor and Razor Components applications.</Description>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Version>1.0.1</Version>
 
     <!-- NuGet settings -->
-    <PackageId>Blazored.Toast</PackageId>
+    <PackageId>Blazor-Bootstrap-Toasts</PackageId>
     <PackageTags>Blazored;Blazor;Razor;Components;Toast;Popup;Notification;ASP.NET Core;CSharp;Web</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/Blazored/Toast</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/StefOttenhof/Blazor-Bootstrap-Toasts</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/Blazored/Toast</RepositoryUrl>
+    <RepositoryUrl>https://github.com/StefOttenhof/Blazor-Bootstrap-Toasts</RepositoryUrl>
 
     <!-- SourceLink settings -->
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Blazored.Toast.snk</AssemblyOriginatorKeyFile>
+    <ReleaseVersion>1.0.1</ReleaseVersion>
+    <SynchReleaseVersion>false</SynchReleaseVersion>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType></DebugType>
+  </PropertyGroup>
   <ItemGroup>
     <Content Remove="bundleconfig.json" />
   </ItemGroup>

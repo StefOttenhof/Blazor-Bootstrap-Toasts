@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1703.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazored.Toast", "Blazored.Toast.csproj", "{F83DEA49-AC53-4CBE-9B0B-16AC2E46062C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebAssembly", "..\..\samples\BlazorWebAssembly\BlazorWebAssembly.csproj", "{6F748DBF-7014-4219-A4D6-BCE5BFCC8045}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F83DEA49-AC53-4CBE-9B0B-16AC2E46062C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F83DEA49-AC53-4CBE-9B0B-16AC2E46062C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F83DEA49-AC53-4CBE-9B0B-16AC2E46062C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F748DBF-7014-4219-A4D6-BCE5BFCC8045}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F748DBF-7014-4219-A4D6-BCE5BFCC8045}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F748DBF-7014-4219-A4D6-BCE5BFCC8045}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F748DBF-7014-4219-A4D6-BCE5BFCC8045}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
