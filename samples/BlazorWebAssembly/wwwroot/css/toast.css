@@ -1,0 +1,169 @@
+﻿.blazored-toast-container {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    z-index: 1;
+}
+
+.position-topleft,
+.position-topright,
+.position-topcenter {
+    top: 0;
+}
+
+.position-bottomleft,
+.position-bottomright,
+.position-bottomcenter {
+    bottom: 0;
+}
+
+.blazored-toast {
+    max-width: 350px;
+    font-size: 0.875rem;
+    background-color: white;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.blazored-toast-header {
+    display: flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    background-color: rgba(255, 255, 255, 0.85);
+    background-clip: padding-box;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
+}
+
+.blazored-toast-body {
+    padding: 0.75rem;
+}
+
+.blazored-toast-component {
+    display: initial;
+    padding: 0 0 0 0;
+}
+
+.blazored-toast-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.blazored-toast-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.blazored-toast-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.blazored-toast-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.blazored-toast-warning {
+    background-color: #ffc107;
+}
+
+.blazored-toast-info {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.blazored-toast-light {
+    background-color: #f8f9fa;
+}
+
+.blazored-toast-dark {
+    background-color: #343a40;
+    color: white;
+}
+
+.blazored-toast-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 1rem 0 0;
+    font-size: 2.5rem;
+}
+
+
+.blazored-toast-progressbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    border-bottom-left-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+}
+
+    .blazored-toast-progressbar > span {
+        position: absolute;
+        filter: brightness(75%);
+        height: 8px;
+        border-bottom-left-radius: .25rem;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+        transition: all .5s linear;
+    }
+
+.blazored-toast-action {
+    cursor: pointer;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@media (min-width: 576px) {
+
+    .position-topleft {
+        top: 2rem;
+        left: 2rem;
+    }
+
+    .position-topright {
+        top: 2rem;
+        right: 2rem;
+    }
+
+    .position-topcenter {
+        top: 2rem;
+        left: 50%;
+        margin-left: -15rem;
+    }
+
+    .position-bottomleft {
+        bottom: 2rem;
+        left: 2rem;
+    }
+
+    .position-bottomright {
+        bottom: 2rem;
+        right: 2rem;
+    }
+
+    .position-bottomcenter {
+        bottom: 2rem;
+        left: 50%;
+        margin-left: -15rem;
+    }
+
+    .blazored-toast {
+        width: 30rem;
+        border-radius: .25rem;
+    }
+}
