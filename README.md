@@ -1,23 +1,23 @@
-# Blazored Toast
-This is a JavaScript free toast implementation for [Blazor](https://blazor.net) and Razor Components applications. It supports icons that are either specified by class name (such as fontawesome) or by a specified element (Material Design).
+# Blazor-Bootstrap-Toasts
+This is a JavaScript free Bootstrap toast implementation for [Blazor](https://blazor.net) and Razor Components applications. It supports icons that are either specified by class name (such as fontawesome) or by a specified element (Material Design). This project is based on Blazored.Toast.
 
-![Build & Test Main](https://github.com/Blazored/Toast/workflows/Build%20&%20Test%20Main/badge.svg)
 
-![Nuget](https://img.shields.io/nuget/v/blazored.toast.svg)
+
+![Nuget](https://img.shields.io/nuget/v/blazor-bootstrap-toasts.svg)
 
 ![Screenshot of component in action](screenshot.png)
 
 ## Getting Setup
-You can install the package via the NuGet package manager just search for *Blazored.Toast*. You can also install via powershell using the following command.
+You can install the package via the NuGet package manager just search for *Blazor-Bootstrap-Toasts*. You can also install via powershell using the following command.
 
 ```powershell
-Install-Package Blazored.Toast
+Install-Package Blazor-Bootstrap-Toasts
 ```
 
 Or via the dotnet CLI.
 
 ```bash
-dotnet add package Blazored.Toast
+dotnet add package Blazor-Bootstrap-Toasts
 ```
 
 ### 1. Register Services
@@ -51,24 +51,28 @@ Add the following to your *_Imports.razor*
 ### 3. Register and Configure Toasts Component
 Add the `<BlazoredToasts />` tag into your applications *MainLayout.razor*.
 
-Toasts are configured using parameters on the `<BlazoredToasts />` component. The following options are available.
+Toasts are configured using parameters on the `<BlazoredToasts />` component. There are the following colors with both *Class* and *Icon* parameters to add custom classes and icons.
 
-- InfoClass
-- InfoIcon
-- SuccessClass
-- SuccessIcon
-- WarningClass
-- WarningIcon
-- ErrorClass
-- ErrorIcon
-- IconType (Default: IconType.FontAwesome)
-- Position (Default: ToastPosition.TopRight)
-- Timeout (Default: 5)
-- ShowProgressBar (Default: false)
-- ShowCloseButton (Default: true)
-- CloseButtonContent (provide custom close button)
-- MaxToastCount (Default: `int.MaxValue`)
+| Toast Color | Class          | Icon          |
+|-------------|----------------|---------------|
+| Primary     | PrimaryClass   | PrimaryIcon   |
+| Secondary   | SecondaryClass | SecondaryIcon |
+| Success     | SuccessClass   | SuccessIcon   |
+| Danger      | DangerClass    | DangerIcon    |
+| Warning     | WarningClass   | WarningIcon   |
+| Info        | InfoClass      | InfoIcon      |
+| Light       | LightClass     | LightIcon     |
+| Dark        | DarkClass      | DarkIcon      |
 
+The following parameters will apply to all toast colors:
+| Parameter       | Options                                                                                                                                                      | Default                |
+|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------|
+| IconType        | IconType.FontAwesome, IconType.Material                                                                                                                     | `IconType.FontAwesome`   |
+| Position        | ToastPosition.TopLeft, ToastPosition.TopCenter, ToastPosition.TopRight, ToastPosition.BottomLeft, ToastPosition.BottomCenter, ToastPosition.BottomRight | `ToastPosition.TopRight` |
+| Timeout         | Int                                                                                                                                                          | `5`                      |
+| ShowProgressBar | Bool                                                                                                                                                         | `False `                 |
+| ShowCloseButton | Bool                                                                                                                                                         | `True `                  |
+| MaxToastCount   | Int                                                                                                                                                          | `int.MaxValue`         |
 By default, you don't need to provide any settings everything will just work. But if you want to add icons to toasts or override the default styling then you can use the options above to do that. 
 
 For example, to add an icon from Font Awesome to all success toasts you can do the following.
@@ -121,6 +125,8 @@ The blazored-toast.css includes the open-iconic-bootstrap.min.css.
 
 We ship both minified and unminified CSS.
 
+! If css is not loaded, copy from src/Styles, create a new file in your css folder and add the styling. Then reference that css file in _Host.cshtml or index.html. This is a bug and this will be fixed in the future !
+
 For minifed use:
 
 ```
@@ -137,10 +143,14 @@ Presumably, if you want to use the Material Icons your project already includes 
 ## Usage
 In order to show a toast you have to inject the `IToastService` into the component or service you want to trigger a toast. You can then call one of the following methods depending on what kind of toast you want to display, passing in a message and an optional heading.
 
-- `ShowInfo`
+- `ShowPrimary`
+- `ShowSecondary`
 - `ShowSuccess`
+- `ShowDanger`
 - `ShowWarning`
-- `ShowError`
+- `ShowInfo`
+- `ShowLight`
+- `ShowDark`
 
 
 ```html
@@ -154,7 +164,7 @@ To show a toast just click one of the buttons below.
 <button class="btn btn-info" @onclick="@(() => toastService.ShowInfo("I'm an INFO message"))">Info Toast</button>
 <button class="btn btn-success" @onclick="@(() => toastService.ShowSuccess("I'm a SUCCESS message with a custom title", "Congratulations!"))">Success Toast</button>
 <button class="btn btn-warning" @onclick="@(() => toastService.ShowWarning("I'm a WARNING message"))">Warning Toast</button>
-<button class="btn btn-danger" @onclick="@(() => toastService.ShowError("I'm an ERROR message"))">Error Toast</button>
+<button class="btn btn-danger" @onclick="@(() => toastService.ShowDanger("I'm an ERROR message"))">Error Toast</button>
 ```
 
 ### Show Progress Bar
@@ -172,67 +182,10 @@ If you wish to clear any visible toasts when the user navigates to a new page yo
 ### Limiting number of toasts shown at once
 If you want to limit the number of toasts displayed at any given time, you can set the `MaxToastCount` parameter. For example, if the value is set to *3* only three toast instances will be displayed. Any additional toasts that are triggered will be held in a queue and will be displayed as older toasts time out.
 
-### Custom Component
-You can call the `ShowToast` method passing the type of component you want the toast to display.
-
-For example if I have a component called `MyToast` which I want to display in the toast and I want to call it from the `Index` component on a button cick.
-
-```html
-@page "/toastdemo"
-@inject IToastService toastService
-
-<h1>Custom Toast Demo</h1>
-
-<button class="btn btn-primary" @onclick="@(() => toastService.ShowToast<MyToast>())">Custom Toast</button>
-```
-
-### Passing Parameters
-If you want to pass values to the component you're displaying in the toast, then you can use the `ToastParameters` object. The name you provide must match the name of a parameter defined on the component being displayed.
-
-```razor
-@page "/toastdemo"
-@inject IToastService toastService
-
-<h1>Custom Toast Demo</h1>
-
-<button class="btn btn-primary" @onclick="@(() => toastService.ShowToast<MyToast>(_toastParameters))">Custom Toast with parameters</button>
-
-@code
-{
-    private ToastParameters _toastParameters;
-
-    protected override void OnInitialized()
-    {
-        _toastParameters = new ToastParameters();
-        _toastParameters.Add(nameof(MyToast.Heading), "MyToast heading");
-        _toastParameters.Add(nameof(MyToast.Message), "MyToast message");
-    }
-}
-```
-### Custom Component Options
-Custom toast components can be customized. These settings can be set globally or changed programatically on a per toast basis. This is achieved using the `ToastInstanceSettings` class.
-The following settings are available.
-- `Timeout`
-- `ShowProgressBar`
-
-For Example if you want to change the duration of the timeout and disable the progress bar.
-
-```html
-@page "/toastdemo"
-@inject IToastService toastService
-
-<h1>Custom Toast Demo</h1>
-
-<button class="btn btn-primary" @onclick="@(() => toastService.ShowToast<MyToast>(new ToastInstanceSettings(5, false)))">Custom Toast</button>
-```
-
-Full examples for client and server-side Blazor are included in the [samples](https://github.com/Blazored/Toast/tree/master/samples).
-
 ## FAQ
 ### The toasts are not showing
 - Check the `z-index` of your other `DOM Elements`, make sure that the `.blazored-toast-container` has a higher `z-index` than the other components.
 ### I upgraded my version of Blazored Toasts and I have errors in my razor file where I declare the BlazoredToasts component.
 - The parameter IconType is a mandatory parameter. An exception will be thrown if any icon is specified.
 - Check the icon parameter names if you have upgraded from a version prior to 2.0.10. Previous to this version the icons supported were specified by class and the parameters were of the form SuccessIconClass. With the addition of Material icon support the parameter form is now simply SuccessIcon.
-
 
