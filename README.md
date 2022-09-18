@@ -126,7 +126,7 @@ The blazored-toast.css includes the open-iconic-bootstrap.min.css.
 
 We ship both minified and unminified CSS.
 
-###### If css is not loaded properly, copy from [css/Styles]([https://myoctocat.com/assets/images/base-octocat.svg](https://github.com/StefOttenhof/Blazor-Bootstrap-Toasts/blob/main/src/Blazored.Toast/Styles/blazored-toast.css)), create a new file in your css folder and add the styling. Then reference that css file in _Host.cshtml or index.html. This is a bug and this will be fixed in the future !
+##### If css is not loaded properly, copy from [src/Styles/blazored-toast.css](https://github.com/StefOttenhof/Blazor-Bootstrap-Toasts/blob/main/src/Blazored.Toast/Styles/blazored-toast.css), create a new file in your css folder and add the styling. Then reference that css file in _Host.cshtml or index.html. This is a bug and this will be fixed in the future !
 
 For minifed use:
 
