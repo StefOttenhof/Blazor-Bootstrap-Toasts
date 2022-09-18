@@ -73,6 +73,7 @@ The following parameters will apply to all toast colors:
 | ShowProgressBar | Bool                                                                                                                                                         | `False `                 |
 | ShowCloseButton | Bool                                                                                                                                                         | `True `                  |
 | MaxToastCount   | Int                                                                                                                                                          | `int.MaxValue`         |
+
 By default, you don't need to provide any settings everything will just work. But if you want to add icons to toasts or override the default styling then you can use the options above to do that. 
 
 For example, to add an icon from Font Awesome to all success toasts you can do the following.
@@ -125,7 +126,7 @@ The blazored-toast.css includes the open-iconic-bootstrap.min.css.
 
 We ship both minified and unminified CSS.
 
-! If css is not loaded, copy from src/Styles, create a new file in your css folder and add the styling. Then reference that css file in _Host.cshtml or index.html. This is a bug and this will be fixed in the future !
+###### If css is not loaded properly, copy from ![css/Styles]([https://myoctocat.com/assets/images/base-octocat.svg](https://github.com/StefOttenhof/Blazor-Bootstrap-Toasts/blob/main/src/Blazored.Toast/Styles/blazored-toast.css)), create a new file in your css folder and add the styling. Then reference that css file in _Host.cshtml or index.html. This is a bug and this will be fixed in the future !
 
 For minifed use:
 
