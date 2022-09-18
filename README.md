@@ -94,7 +94,7 @@ Setting the position also requires a reference to `Blazored.Toast.Configuration`
                 SuccessIcon="fa fa-thumbs-up"
                 ErrorIcon="fa fa-bug" />
 ```
-The example above is from the [client side samples](https://github.com/Blazored/Toast/tree/master/samples).
+The example above is from the [client side samples](https://github.com/StefOttenhof/Blazor-Bootstrap-Toasts/tree/main/samples/BlazorWebAssembly).
 
 ```html
 <BlazoredToasts Position="ToastPosition.BottomRight"
@@ -105,7 +105,7 @@ The example above is from the [client side samples](https://github.com/Blazored/
                 SuccessIcon="done_outline"
                 WarningIcon="warning" />
 ```
-The example above is from the [server side samples](https://github.com/Blazored/Toast/tree/master/samples) and demonstrates the use of Material Design icons.
+The example above is from the [server side samples](https://github.com/StefOttenhof/Blazor-Bootstrap-Toasts/tree/main/samples/BlazorServer) and demonstrates the use of Material Design icons.
 
 
 If you want to have your own custom close button:
@@ -126,7 +126,7 @@ The blazored-toast.css includes the open-iconic-bootstrap.min.css.
 
 We ship both minified and unminified CSS.
 
-###### If css is not loaded properly, copy from ![css/Styles]([https://myoctocat.com/assets/images/base-octocat.svg](https://github.com/StefOttenhof/Blazor-Bootstrap-Toasts/blob/main/src/Blazored.Toast/Styles/blazored-toast.css)), create a new file in your css folder and add the styling. Then reference that css file in _Host.cshtml or index.html. This is a bug and this will be fixed in the future !
+###### If css is not loaded properly, copy from [css/Styles]([https://myoctocat.com/assets/images/base-octocat.svg](https://github.com/StefOttenhof/Blazor-Bootstrap-Toasts/blob/main/src/Blazored.Toast/Styles/blazored-toast.css)), create a new file in your css folder and add the styling. Then reference that css file in _Host.cshtml or index.html. This is a bug and this will be fixed in the future !
 
 For minifed use:
 
